@@ -2,7 +2,7 @@ const Pool = require('pg').Pool
 require('dotenv').config();
 const pool = new Pool({
   user: process.env.DB_USER,
-  host: process.env.DB_HOST,
+  host: 'postgres://dpg-cf1j8rirrk0bpp942gu0-a.oregon-postgres.render.com',
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
@@ -20,7 +20,7 @@ const getPublicacoes = (request, response) => {
 const insertPublicacao = (request, response) => {
     const { nomeUser, legenda } = request.body
 
-    pool.query('INSERT INTO publicacoes ("nomeUser", "legenda", "created_at") VALUES ($1, $2, $3)', [nomeUser, legenda, new Date()], (error, results) => {
+    pool.query('INSERT INTO publicacoes ("nomeuser", "legenda", "created_at") VALUES ($1, $2, $3)', [nomeUser, legenda, new Date()], (error, results) => {
       if (error) {
         throw error
       }
