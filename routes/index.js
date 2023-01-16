@@ -6,5 +6,6 @@ var db = require('../queries/queries');
 
 router.get('/pub/show', db.getPublicacoes);
 router.post('/pub/new', db.insertPublicacao);
+router.post('/login', db.login);
 
 module.exports = router;

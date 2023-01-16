@@ -28,7 +28,22 @@ const insertPublicacao = (request, response) => {
     })
   };
 
+const login = (request, response) => {
+  const { login, password } = request.body;
+  pool.query("SELECT * FROM users WHERE login = $1 AND password = $2", [login, password], (error, results) => {
+    if (error) {
+      throw error
+    }
+    if (results.rowCount > 0) {
+      response.status(200).json(results.rows[0]);
+    } else {
+      response.status(204).json({});
+    }
+  });
+}
+
 module.exports = {
     getPublicacoes,
-    insertPublicacao
+    insertPublicacao,
+    login
 }
