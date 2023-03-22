@@ -1,8 +1,7 @@
 const pool = require('../db');
 
-
 const getPublicacoes = (request, response) => {
-    pool.query('SELECT * FROM publicacoes ORDER BY created_at DESC', (error, results) => {
+    pool.query("SELECT *, TO_CHAR(p.created_at, 'dd/mm/yyyy') as data_publicacao, TO_CHAR(p.created_at, 'hh:ii:ss') as hora_publicacao FROM publicacoes p ORDER BY created_at DESC", (error, results) => {
         if (error) {
             throw error
         }
