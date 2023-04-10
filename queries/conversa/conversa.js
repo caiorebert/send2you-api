@@ -24,7 +24,7 @@ const getAllMensagens = (request, response) => {
     pool.query(
         `SELECT 
             *,
-            TO_CHAR(created_at, 'hh24:ii') as hora 
+            TO_CHAR(created_at, 'HH24:MI') as hora 
             FROM mensagens 
             WHERE 
                 (id_user_remetente = $1 AND id_user_destinatario = $2) 
